@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button> <ion-icon name="reorder-three-outline"></ion-icon> </ion-button>
+      <ion-button [routerLink]="['/home']"> Inicio </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header> Generar Código QR</ion-card-header>
+    <ion-card-content>
+      <!--<qrcode [qrdata]="qrString" [width]="256"></qrcode>-->
+      
+    </ion-card-content>
+
+    <ion-card>
+      <br>
+      <ion-label style="margin: 10px"> Registro Manual</ion-label>
+      
+      <ion-item>
+        <ion-label position="stacked"> Nombre </ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked"> Asignatura</ion-label>
+        <ion-select>
+          <ion-select-option> Aplicaciones Móviles </ion-select-option>
+          <ion-select-option> Base de Datos </ion-select-option>
+          <ion-select-option> Programación de Algoritmos </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-buttons>
+          <ion-label> Registrar</ion-label>
+          <ion-button (click)="save()"></ion-button>
+          <ion-icon slot="icon-only" name="save"></ion-icon>
+        </ion-buttons>
+      </ion-item>
+
+
+    </ion-card>
+
+    <ion-card *ngFor="let registro of registros">
+      <ion-item>
+        <ion-label> Nombre: {{registro.nombre}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label> Asiste a: {{registro.asiste}}</ion-label>
+      </ion-item>
+    </ion-card>
+
+  </ion-card>
+
+  <!--<ion-button expand="block" class="ion-margin" (click)="startScan()"></ion-button>-->
+
+</ion-content>

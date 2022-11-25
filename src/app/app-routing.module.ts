@@ -16,11 +16,9 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'alumnos',
-    loadChildren: () => import('./alumnos/alumnos.module').then( m => m.AlumnosPageModule)
+    path: 'qrgen',
+    loadChildren: () => import('./qrgen/qrgen.module').then( m => m.QrgenPageModule)
   },
-
-
 ];
 
 @NgModule({

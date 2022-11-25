@@ -1,42 +1,17 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      RegistrApp
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
-  <ion-card>
-    <ion-item>
-      <ion-label>Bienvenid@</ion-label>
-    </ion-item>
-  </ion-card>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <ion-card>
-    <ion-item>
-
-      <ion-label> Como docente </ion-label>
-      <ion-button expand="block" fill="outline" color="warning" (click)="irLogind()"> Ingresar </ion-button>   
-
-    </ion-item>
-  </ion-card>
-
-  <ion-card>
-    <ion-item>
-
-      <ion-label> Como estudiante </ion-label>
-      
-      <ion-button expand="block" fill="outline" color="danger" [disabled]="true"> Pronto </ion-button>
-
-    </ion-item>
-  </ion-card>
-
+  <div id="container">
+    <ion-icon><img src="/src/app/img/RegistrApp Icon.png"> </ion-icon>
+    <strong>Bienvenido a RegistrApp</strong>
+    <p>Empieza a registrar tu asistencia más rápido!</p>
+  </div>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <img src="https://www.duoc.cl/wp-content/themes/wordpress-duoc-cl/images/logo-duoc.svg" width="100px">
-  </ion-toolbar>
-</ion-footer>
