@@ -23,8 +23,8 @@ export class QrgenPage implements OnInit {
   // usuarios: Usuario[] = [];
 
   newReg: Registro = {
-    nombre: 'Estu Diante',
-    asiste: 'Aplicaciones Móviles',
+    nombre: '',
+    asiste: '',
     html: '',
     id: '',
 
@@ -44,11 +44,12 @@ export class QrgenPage implements OnInit {
     });
     // this.presentToast('guardado con éxito', 2000)
     // this.loading.dismiss();
+    
     this.newReg = {
       nombre: '',
-    asiste: '',
-    html: '',
-    id: '',
+      asiste: '',
+      html: '',
+      id: '',
     }
 
   }

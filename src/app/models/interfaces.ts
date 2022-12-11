@@ -1,5 +1,4 @@
 
-
 export interface Registro {
     nombre: string;
     asiste: string;
