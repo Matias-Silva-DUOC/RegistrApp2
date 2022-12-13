@@ -1,17 +1,37 @@
-<ion-header>
-
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-menu-button slot="start"> <ion-icon name="menu"></ion-icon></ion-menu-button>
+    <ion-title>
+      Registro de Asistencia
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large"></ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <ion-icon><img src="/src/app/img/RegistrApp Icon.png"> </ion-icon>
-    <strong>Bienvenido a RegistrApp</strong>
-    <p>Empieza a registrar tu asistencia más rápido!</p>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <strong>Estos son los estudiantes que han resgistrado su asistencia</strong>
+    </ion-card-header>
+
+
+    <ion-list>
+      <ion-list-header>
+        <ion-label style="font-size: 18px;"> Nombre</ion-label>
+        <ion-label style="font-size: 18px;"> Clase</ion-label>
+      </ion-list-header>
+
+      <ion-item *ngFor="let reg of Regis" (click)="openReg(reg)">
+        <ion-label>
+          {{ reg.nombre }}
+        </ion-label>
+        <ion-label>
+          {{ reg.asiste }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    
+
+</ion-card>
 </ion-content>

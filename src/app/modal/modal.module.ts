@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { QrgenPageRoutingModule } from './qrgen-routing.module';
+import { ModalPageRoutingModule } from './modal-routing.module';
 
-import { QrgenPage } from './qrgen.page';
+import { ModalPage } from './modal.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    QrgenPageRoutingModule
+    ModalPageRoutingModule
   ],
-  declarations: [QrgenPage]
+  declarations: [ModalPage]
 })
-export class QrgenPageModule {}
+export class ModalPageModule {}

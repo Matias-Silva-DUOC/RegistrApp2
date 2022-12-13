@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { LoadingController, NavController, ToastController } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { Registro } from '../models/interfaces';
-import { BasedatosService } from '../services/firestore.service';
+import { AlertController, ModalController } from '@ionic/angular';
+import { DataService, Regis } from '../services/data.service';
+import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-qrgen',
@@ -13,82 +13,75 @@ import { BasedatosService } from '../services/firestore.service';
 })
 export class QrgenPage implements OnInit {
 
-  //qrString = 'aaa';
-
-  enable = true;
-  // items : Observable<any[]>;
-  
-
-  // resultadoQR: number;
-  // usuarios: Usuario[] = [];
-
-  newReg: Registro = {
-    nombre: '',
-    asiste: '',
-    html: '',
-    id: '',
-
-  };
-  basedatosService: any;
-
-  constructor( public database: BasedatosService, public toasController: ToastController, public loadingController: LoadingController) { }
-
-  async save(){
-    // this.presentLoading();
-    console.log('Guardando ->', this.newReg);
-    const data = this.newReg;
-    data.id = this.database.createId();
-    const enlace = 'Regitros';
-    await this.database.createDocument<Registro>(data, enlace, data.id).catch(res => {
-      console.log('el error es ->', res);
+  constructor(
+    private dataService: DataService, 
+    private barcodeScanner: BarcodeScanner, 
+    private alertCtrl: AlertController, 
+    private modalCtrl: ModalController, 
+    private router:Router,
+    private authService: AuthService
+    ){
+    this.dataService.getReg().subscribe(res => {
+      this.Regis = res;
     });
-    // this.presentToast('guardado con éxito', 2000)
-    // this.loading.dismiss();
-    
-    this.newReg = {
-      nombre: '',
-      asiste: '',
-      html: '',
-      id: '',
-    }
 
   }
-
-  serviciosQR = [
-  ];
-
-  registros: Registro[] = [];
 
   ngOnInit() {
-    console.log('this.usuarios -> ', this.registros);
-    this.getRegistros();
   }
 
-  getRegistros() {
-    const enlace = 'Registros';
-    this.database.getCollectionChanges<Registro>(enlace).subscribe(res => {
-      console.log(res);
-      this.registros = res;
+  //
+
+  code: any;
+  Regis : any = [];
+  
+  scan(){
+    this.barcodeScanner.scan().then(barcodeData => {
+      this.code = barcodeData.text;
+      console.log('Barcode data: ', barcodeData, this.code);
+      
+    }).catch(err => {
+      console.log('ERROR: ', err)
     });
   }
 
-  editReg(registro: Registro){
-    console.log('click en el registro -> ', registro);
-    this.basedatosService.setRegistro(registro);
+  logout(){
+    this.authService.logout();
+    console.log('Cerrando Sesión');
+    this.router.navigate(['/login']);
   }
 
-  /*
-  async deleteRegistro(registro: Registro) {
-    const enlace = 'qrgen';
-    const res = await this.basedatosService.deletDocument<Registro>(enlace, item.id).catch(res =>{
-      console.log('error -> ', res);
-    })
-    console.log('Borrado con éxito');
+
+  async addReg(){
+    const alert = await this.alertCtrl.create({
+      header: 'Añadir Registro',
+      inputs: [
+        {
+          name: 'nombre',
+          placeholder: 'nombre estudiante',
+          type: 'textarea'
+        },
+        {
+          name: 'asiste',
+          placeholder: 'asignatura',
+          type: 'textarea'
+        }
+      ],
+      buttons:[
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Añadir',
+          handler: (res)=> {
+            this.dataService.addReg({nombre: res.nombre, asiste: res.asiste, id: res.id});
+          },
+        }
+      ]
+    });
+    await alert.present();
   }
-  */
-  
-
-
 
 
 }

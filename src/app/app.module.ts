@@ -6,17 +6,27 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-//import { QRCodeModule } from 'angularx-qrcode';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
 import { environment } from 'src/environments/environment';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
+import { provideFirebaseApp, initializeApp} from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
+import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
+
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
+import { HttpClientModule } from '@angular/common/http';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebaseConfig), AngularFireDatabaseModule, AngularFireAuthModule, AngularFirestoreModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireAuthModule, HttpClientModule,
+            provideFirebaseApp(() =>initializeApp(environment.firebaseConfig)),
+            provideFirestore(()=> getFirestore()),],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy},{provide:FIREBASE_OPTIONS, useValue: environment.firebaseConfig}, BarcodeScanner],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+
+

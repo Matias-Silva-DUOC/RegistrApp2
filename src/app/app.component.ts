@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +7,9 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(public menuController: MenuController) {}
-
-  ngOnInit() {
-    
-  }
-  openMenu(){
-    this.menuController.toggle('menuR')
-  }
+  constructor() {}
 
 
 }
+
+

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title> Registro de Usuario</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked"> Nombre </ion-label>
+        <ion-input [(ngModel)]="datos.nombre"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked"> Correo </ion-label>
+        <ion-input type="email" [(ngModel)]="datos.email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked"> Contraeña </ion-label>
+        <ion-input type="password" [(ngModel)]="datos.password"></ion-input>
+      </ion-item>
+
+    </ion-card-content>
+
+    <ion-item>
+      <!--(click)="registrar()"-->
+      <ion-button type="submit" expand="block" color="dark" [routerLink]="['/login']"> Regístrate </ion-button>
+    </ion-item>
+
+  </ion-card>
+
+</ion-content>

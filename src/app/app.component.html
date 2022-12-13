@@ -1,72 +1,43 @@
 <ion-app>
+  
+  <ion-split-pane side="start" contentId="main">
 
-  <ion-header>
-    <ion-toolbar color="tertiary">
-      <ion-title>  </ion-title>
-      <ion-buttons slot="start">
-        <ion-button (click)="openMenu()"> <ion-icon name="reorder-three-outline"></ion-icon> </ion-button>
-        <ion-button [routerLink]="['/home']"> Inicio </ion-button>
-        <ion-button [routerLink]="['/login']"> Login </ion-button>
+    <ion-menu contentId="main">
 
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-split-pane contentId="main">
-
-    <ion-menu side="start" menuId="menuR" contentId="main">
       <ion-header>
-        <ion-toolbar color="warning">
+        <ion-toolbar color="secondary">
           <ion-title> Menú </ion-title>
         </ion-toolbar>
       </ion-header>
+
       <ion-content>
         <ion-list>
-
-          <ion-menu-toggle [routerLink]="['/home']">
-            <ion-item> Inicio <ion-icon name="home" slot="end"></ion-icon> </ion-item>
-            
+          <ion-menu-toggle>
+            <ion-item [routerLink]="['/home']"> Home </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle [routerLink]="['/qrgen']">
-            <ion-item> Generar QR </ion-item>
+          
+          <ion-menu-toggle>
+            <ion-item [routerLink]="['/login']"> Iniciar Sesión </ion-item>
           </ion-menu-toggle>
 
           <ion-menu-toggle>
-
+            <ion-item [routerLink]="['/registro']" routerLinkActive="router-link-active" > Registrarse </ion-item>
           </ion-menu-toggle>
 
+          <ion-menu-toggle>
+            <ion-item [routerLink]="['/qrgen']"> Leer QR </ion-item>
+          </ion-menu-toggle>
+
+
         </ion-list>
       </ion-content>
     </ion-menu>
 
-    <!--
-      <ion-menu side="end" menuId="menuL" contentId="main" class="my-custom-menu">
-      <ion-header>
-        <ion-toolbar color="warning">
-          <ion-title> Usuario </ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-list>
-          <ion-item> Menú I </ion-item>
-          <ion-item> Menú II </ion-item>
-          <ion-item> Menú III </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    
-    
-    -->
     <ion-router-outlet id="main"></ion-router-outlet>
-  </ion-split-pane>
-    
 
-  <!--
-    <app-header>
-    <ion-router-outlet></ion-router-outlet>
-    </app-header>
-  -->
+  </ion-split-pane>
+  
+
   
 
 </ion-app>
-
